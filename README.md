@@ -1,6 +1,6 @@
-### 凤蝶首页
+### 首页
 
-凤蝶里的 landing page. 
+landing page. 
 
 脚手架使用的是： [antd-init](https://github.com/ant-design/antd-init);
 
