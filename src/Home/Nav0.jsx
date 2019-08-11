@@ -60,15 +60,35 @@ class Header extends React.Component {
         >
           <TweenOne
             animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
+            {...dataSource.logo}
           >
-            <div className="header-content">
-              <h1>
-                <a>
-                  凤凤
-                </a>
-                <span>个人业务平台</span>
-              </h1>
+            <img width="100%" src={dataSource.logo.children} alt="img" />
+          </TweenOne>
+          {isMobile && (
+            <div
+              {...dataSource.mobileMenu}
+              onClick={() => {
+                this.phoneClick();
+              }}
+            >
+              <em />
+              <em />
+              <em />
             </div>
+          )}
+          <TweenOne
+            {...dataSource.Menu}
+            animation={{ x: 30, type: 'from', ease: 'easeOutQuad' }}
+            ref={this.menu} // {(c) => { this.menu = c; }}
+            style={isMobile ? { height: menuHeight } : null}
+          >
+            <Menu
+              mode={isMobile ? 'inline' : 'horizontal'}
+              defaultSelectedKeys={['0']}
+              theme={isMobile ? 'dark' : 'default'}
+            >
+              {navChildren}
+            </Menu>
           </TweenOne>
         </div>
       </TweenOne>

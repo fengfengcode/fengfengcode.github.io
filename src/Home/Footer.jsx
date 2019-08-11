@@ -1,28 +1,27 @@
 import React from 'react';
-import { footer } from './data';
+import TweenOne from 'rc-tween-one';
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 
-function antCloudFooter() {
-  const children = footer.map((item, i) => (<div key={i}><a href={item.src}>{item.text}</a></div>));
-  return (<div>
-    <div className="logo" key="logo">
-      <img src="https://gw.alipayobjects.com/zos/rmsportal/dnIbXmAgGbRxQJksRsJL.svg" width="72" height="82" />
-    </div>
-    <div key="nav" className="home-footer-nav-wrapper">
-      {children}
-    </div>
-  </div>
-  );
-}
-
-function Footer() {
-  return (
-    <div className="home-layout-wrapper home-footer-wrapper">
-      <div className="home-layout">
-        {antCloudFooter()}
-        <p key="cop" className="copy">Copyright ©2016 蚂蚁金融服务集团  |  ICP证：沪ICP备15027489号-2</p>
+class Footer extends React.PureComponent {
+  render() {
+    const { ...props } = this.props;
+    const { dataSource } = props;
+    delete props.dataSource;
+    delete props.isMobile;
+    return (
+      <div {...props} {...dataSource.wrapper}>
+        <OverPack {...dataSource.OverPack}>
+          <TweenOne
+            animation={{ y: '+=30', opacity: 0, type: 'from' }}
+            key="footer"
+            {...dataSource.copyright}
+          >
+            {dataSource.copyright.children}
+          </TweenOne>
+        </OverPack>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Footer;
